@@ -44,4 +44,19 @@ skim 해본 결과 abstract 중에 ~99%가 모델에 관한것이고, ~1%의 연
 
 5. 현대의 많은 모델은 low bias machine임, 일반적으로 분산문제이며, 데이터셋을 개선하는 것은 분산을 줄이는 좋은 방법이다.
 
-6. 
+6. 적은 데이터와 라벨 일관성
+
+7. ![image-20211221174430800](.\acwa\캡처5)
+
+clean and consistent small data를 가지고 (tools to make sure you have a clean and consistent data) 충분히 학습 알고리즘을 만들 수 있다!
+
+8. 데이터 중심 관점에서 봤을 때, noise를 클린하는것과, 다른 500개의 새로운 example을 찾는 것(데이터셋을 두배로 하는 것)이 동등한 효과를 낳는것을 발견할 수 있다.
+
+   ![image-20211221174859064](.\acwa\캡처6.png)
+
+9. 데이터 클리닝 vs noisy data의 데이터 수 증가 비교했을때 데이터를 3배로 늘리는 것과 = data cleaning 동일한 효과를 낳는다.
+
+   ![image-20211221175209458](.\acwa\캡처7.png)
+
+10. 
+
