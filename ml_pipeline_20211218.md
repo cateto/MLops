@@ -13,8 +13,6 @@
 * 모델 개발은 ML project 안에서 굉장히 작은 비율.
 * Software Engineering을 포함한 다른 영역의 비율이 훨씬 높음.
 
-![](ml_pipeline_20211218/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-12-18%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2011.13.05.png)
-
 
 4. 머신러닝 모델 개발에서 마주하는 난관
 * 파이프라인이 구축되어 있지 않고 주먹구구식으로 개발하게 되면 ?
@@ -32,10 +30,82 @@
 * 특징 : 지속적 통합(**CI**, Continuous Intergration), 지속적 배포(**CD**, Continuous Delivery)를 이행, 또한 추가적으로 데이터가 바뀔 떄마다 모델을 반복 학습(**CT**, Continuous Training)
 
 6. ML Project의 Life Cycle
-![](ml_pipeline_20211218/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-12-18%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2011.13.44.png)
+
 
 
 7. Planning & Project Setup
 * 프로젝트 우선순위를 정하기 위한 키 포인트
 	* High Impact : cheap prediction으로 큰 효과를 내는 가치 있는 프로젝트
 	* High Feasibility : 데이터 가용성, 정확도 요구사항, 문제 난이도 등
+	
+	1) define project goals
+	
+	* Data Avaliability
+	  * 레이블 O : 모델 훈련과 품질 평가가 수월함.
+	  * 유사 레이블 O : 완벽한 레이블된 데이터보다는 찾기가 수월함.
+	  * 레이블 X : 레이블링 하거나, 레이블 없이 학습하는 모델을 찾아야 함.
+	* Accuracy requirement
+	  - Cost는 데이터 가용성에 의해서도 결정되지만, 정확성 요구도 큰 역할을 함.
+	  - 높은 성능까지 가려면 Cost가 지수함수처럼 증가함.
+	* 초기 모델 설계의 3가지 방법
+	  * (1) baseline model(기준모델) : 도메인 지식을 이용해 머신러닝을 사용하지 않고 rule base로 해결할 수 있는 방법을 설계해본다. 
+	  * (2) simple model( 단순모델) : 문제를 여러 단계로 나누어 단계별로 머신러닝 모델 및 규칙기반 모델을 적용해본다.
+	  * (3) complex model(복잡 모델) : end-to-end 방식으로 모델링한다.
+	* 대부분의 경우 머신러닝 없이 시작하는 것이 머신러닝 제품을 만드는 가장 빠른 방법이다.
+	
+	2) Choose Mectrics
+	
+	- metric 을 다양하게 조합하여 사용해야 한다.
+	
+	3) Evaluate baselines
+	
+	- 하한선이 엄격할수록 유용하다.
+	- 일반인보다 전문가로부터 모은 데이터가 baseline의 질을 높여주지만, 상대적으로 데이터 수집의 난이도가 높아진다.
+
+8. Data Collection & Labeling
+
+   1) 데이터 수집과 레이블링 옵션
+
+   - 자체 어노테이터 채용 : 빠르고 질좋은 어노테이션 가능, 비용이 많이 들고 확장이 어려움.
+
+   2) 크라우드 소싱
+
+   - Amazon Mechanical Tuck같은 것, 빠르고 싸지만 어노테이션의 질을 보장하지 못함.
+
+   3) 데이터 구축 서비스 회사
+
+   - 비용과 시간을 절감할 수 있음. 직접 수행후 ,여러업체에 샘플을 요청
+   - 크라우드 웍스, Annotation-AI, 테스트 웍스,AIMMO
+
+   4) data labeling tools
+
+   5) Data versioning : 데이터의 버전이 관리되지 않으면 머신러닝 모델이 완벽하게 관리된다고 할 수 없음!
+
+9.  Training & Debugging
+
+   1) 딥러닝 문제 해결의 어려움
+
+   - 모델 성능을 떨어뜨리는 요인들 : 구현을 잘못한 경우, hyperparameter의 choice
+
+   2) 일반적으로 dataset 구성 시 생기는 이슈들
+
+   - Not enough data
+   - Noisy labels
+   - Imbalanced classes
+   - Train / Test from different distributions
+
+   3) 왜 어려운가?
+
+   - 버그가 있는지 알수조차 없고 알기 어려움
+   - 같은 성능 저하에 대해서 가능한 원인이 많음
+   - 하이퍼파라미터와 데이터 구성의 작은 변화에도 학습결과가 예민하게 변화함.
+
+   4) 마인드셋 : Pessimism 최대한 비관적으로 보자. 
+
+   - 문제의 원인을 알기 어렵기 때문에 먼저 간단하게 시작하고 (start simple) 점차 복잡도를 올리자.
+
+   5) 문제 해결의 전략
+
+   - 기본셋팅 사용
+   - 문제를 단순화하기
+
