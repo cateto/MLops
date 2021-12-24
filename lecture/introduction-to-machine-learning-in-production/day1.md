@@ -73,3 +73,31 @@ ex) covid19 이전의 온라인구매와 이후 온라인 구매
    * Gradual ramp up with monitoring
    * Rollback
 
+#### deploy patterns
+
+shadow mode deployment
+
+canary deployment
+
+blue green deployment
+
+#### deployment tools
+
+partial automation (not sure -> send to human -> human judgement)
+
+**maybe a human in the loop deployments rather than a full automation deployment. **
+
+
+
+#### HOW can WE MONITORING?!!
+
+- Dashboard
+
+  - brainstorm a few statistics or 
+
+    a few metrics that will detect that problem.
+
+    
+
+#### Pipeline Monitoring
+
